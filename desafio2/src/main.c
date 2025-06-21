@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     unsigned M = atoi(argv[2]);
 
     //OPERATIONS
-    int *Matrix = generation(N, M);                                   //generation of the matrix
+    int *Matrix = generation(N, M);                                                 //generation of the matrix
     if(!Matrix){
         printf("\nMemory allocation error on the input matrix!\n");
         return 3;
@@ -22,13 +22,13 @@ int main(int argc, char **argv) {
     saveMatrix("src/datas/matrix-in.txt", Matrix, N, M);                            //saving the generated matrix on /datas/*in
 
     int *loaded = (int*)malloc(N * M * sizeof(int));
-    loadMatrix("src/datas/matrix-in.txt", loaded, &N, &M);            //scanning the generated matrix
+    loadMatrix("src/datas/matrix-in.txt", loaded, &N, &M);                          //scanning the generated matrix
     if(!loaded){
         printf("\nScan error on the input matrix!\n");
         return 4;
     }
 
-    int *LBP = getLBP(loaded, N, M);                                            //LBP algorithm
+    int *LBP = getLBP(loaded, N, M);                                                 //LBP algorithm
     writeMatrix("src/datas/matrix-out.txt", LBP, N, M);                              //saving the LBP matrix in /dadas/*out
     if(!LBP){
         
