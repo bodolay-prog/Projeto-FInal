@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
         return 3;
     }
 
-    writeSave(outFile, LBP, N, M);                                                   //saving LBP result in output file
+    writeSave(outFile, LBP, N, M);                                                                  //saving LBP result in output file
 
     //memory releasing
     free(image);
