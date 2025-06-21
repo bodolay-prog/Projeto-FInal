@@ -1,6 +1,6 @@
 all:
-	gcc -Wall -g -o lbp src/main.c src/ops.c
+	gcc -Wall -g -o lbp src/main.c src/image.c src/ops.c
 
-clean:
+dish:
 	rm -f lbp
 
