@@ -18,5 +18,5 @@ Application for processing PGM images using Local Binary Patterns (LBP), by Eric
 
 
 ## Running
-
-1. In root directory, Run: Python3 run.py <Your-PGM-Archive-Placed-In-'Inputs/'>
+1. Place your .pgm P5 image in /src/datas/inputs/ directory
+2. In root directory, Run: Python3 run.py <Your-PGM-Archive-Placed-In-'Inputs/'>
