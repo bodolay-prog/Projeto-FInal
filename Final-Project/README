@@ -1,0 +1,4 @@
+Mancho o que eu fiz foi basicamente so aquele negocio do diretorio
+ent tipo ele todos os arquivos do diretorio, e tipo esse "dir.d_name" é o nome no arquivo no diretorio
+de resto so foi fazer o filepath que é usar o nome (dir.d_name) e o diretorio que nois coloca manual, mas deve ter como fazer um define sla
+fazer um Makefile e ajeitas as lib e só

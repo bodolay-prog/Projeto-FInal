@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 typedef struct  {
 	int tipo;
@@ -15,10 +16,8 @@ void writePGMImage(pgm *, char *);
 
 int main(int argc, char *argv[]){
 
-	 pgm img;
 	 pgm lbp;
 	 
-
 	if (argc!=3){
 		printf("Formato: \n\t %s <imagemEntrada.pgm> <imagemSaida.pgm>\n",argv[0]);
 		exit(1);
