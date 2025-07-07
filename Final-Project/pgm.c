@@ -26,10 +26,9 @@ int main(int argc, char *argv[]){
 
 	//(*( h + *(lbp.pdata + i))) ++;
 	// escolpo histograma
-	readPGMImage(&img,argv[1]); // pegar nome automatico
-	readPGMImage(&lbp,argv[1]);
-	lbp.pData = doLBPImage(img);
-	writePGMImage(&lbp,argv[2]); // escrava nome automitico
+	readPGMImage(&lbp,argv[1]); // pegar nome automatico
+	lbp.pData = doLBPImage(lbp);
+	writePGMImage(&lbp,argv[2]); // escrava nome automitico, não temque gerar saída, mas aqui so vai ta pra testes
 	//testar fazer com um diretorio intiero (ler.c)
 	//fazer funcao histograma 
 	//funcao que pega o primeiro nome do arquivo identifica se e 0 ou 1 e coloca no final do texto no arquivo csv
