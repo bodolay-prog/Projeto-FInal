@@ -14,7 +14,7 @@ int main(void)
     pgm *lbp;
     DIR *d;
     char *name;
-    char filepath[512];
+    char filepath[512]; // o tamanho é o dobro de 256 por causa do nome do arquivo que pode ser maior que 256, e o tamanho do caminho que é 256, ou seja, 512 é o tamanho maximo do caminho + nome do arquivo
     unsigned char *histogram = NULL;
     struct dirent *dir;
     d = opendir("./input-tests");
