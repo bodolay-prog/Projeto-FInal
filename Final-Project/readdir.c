@@ -30,7 +30,7 @@ int main(void)
             snprintf(filepath, sizeof(filepath), "./input-tests/%s", dir->d_name);// faz a rota onde ta o arquivo na pasta inputs-tests
             readPGMImage(lbp,filepath);// le a imagem
             allocMemVector(&histogram,(lbp->mv+2)); // + 2, por causa do que tem que ser 0 a 255 o que seria histogram[256] e no final ter o 0 ou 1, ou seja, historgram[257] que vai de 0 - 256 posições
-             
+                                                    // o allocMemVector tem calloc então ele sempre zera por segurança
             lbp->pData = doLBPImage(lbp);// faz o lbp e armazena no dados da strutc
             doHistogram(lbp,dir->d_name,histogram); // faz o histograma
 
