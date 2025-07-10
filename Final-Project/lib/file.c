@@ -4,5 +4,9 @@
 #include <string.h>
 #include "image.h"
 
-unsigned char * doLBPImage(pgm*);
-void doHistogram(pgm*,char*,unsigned char*);
+
+void writeCSVfile(pgm lbp,char *filename){
+
+
+
+}

@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct  {
-	int tipo;
-	int c;
-	int r;
-	int mv;
-	unsigned char *pData;
-} pgm;
+#include "image.h"
 
 void readPGMImage(pgm *pio,char *filename){
 
