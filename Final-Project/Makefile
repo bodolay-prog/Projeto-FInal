@@ -1,3 +1,5 @@
+#makefile temporário e exageradamente complexo só pra compilar rapido e saber oq ta zuado
+
 # Diretórios
 SRC_DIR = src
 TIME_DIR = time

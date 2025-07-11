@@ -18,7 +18,8 @@ void allocMemStruct(pgm **lbp,int qtd){
 
 void allocMemVector(unsigned char **v, int qtd){
 
-    *v = (unsigned char*)calloc(qtd,sizeof(unsigned char));
+    
+    *v = (unsigned char*)calloc(qtd, sizeof(unsigned char));
     if(!(*v)){
 
         perror("\n allocMemVector() says: Error at memory allocation\n");
