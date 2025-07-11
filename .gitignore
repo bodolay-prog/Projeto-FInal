@@ -1,0 +1,12 @@
+build/
+bin/
+
+
+output/
+
+
+*.o
+*.e
+
+
+.vscode/
