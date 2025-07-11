@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "image.h"
 
-void readPGMImage(pgm *pio,char *filename){
+void readPGMImage(pgm *pio, char *filename){
 
 	FILE *fp;
 	char ch;
@@ -53,12 +53,11 @@ void readPGMImage(pgm *pio,char *filename){
 	}
 	
 	fclose(fp);
-
 }
 
 void writePGMImage(pgm *pio, char *filename){
 	FILE *fp;
-	char ch;
+	//char ch;
 
 
 	if (!(fp = fopen(filename,"wb"))){
@@ -72,12 +71,8 @@ void writePGMImage(pgm *pio, char *filename){
 	fprintf(fp, "%d\n", 255);
 
 
-	fwrite(pio->pData, sizeof(unsigned char),pio->c * pio->r, fp);
+	fwrite(pio->pData, sizeof(unsigned char), pio->c * pio->r, fp);
 
 
 	fclose(fp);
-
-
 }
-
-

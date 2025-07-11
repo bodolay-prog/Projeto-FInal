@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #ifndef IMAGE_H
 #define IMAGE_H
 
@@ -12,7 +9,7 @@ typedef struct  {
 	unsigned char *pData;
 } pgm;
 
-void readPGMImage(pgm*,char*);
+void readPGMImage(pgm *,char *);
 void writePGMImage(pgm *, char *);
 
 #endif

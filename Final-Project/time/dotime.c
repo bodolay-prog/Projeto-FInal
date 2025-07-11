@@ -3,7 +3,8 @@
 
 #define QTDIMG 100
 
-int main(){
+void dotime(){
+	
 	int k;
 	clock_t begin, end;
 	double time_per_img, time_total=0;
@@ -28,9 +29,6 @@ int main(){
 
 	}
 
-
 	printf("Tempo médio: %lf\n",time_total/QTDIMG);
 	printf("Tempo Total: %lf\n",time_total);
-	return 0;
-
 }
