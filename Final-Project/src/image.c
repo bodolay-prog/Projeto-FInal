@@ -22,7 +22,7 @@ int countImages(const char *directory){
 	struct dirent *run;
 	int counter = 0;
 
-	while((run = readdir(d)) != NULL) if(strstr(run->d_name, ".pgm") != NULL) counter++;									//if(dir->d_name ==  '.') continue;
+	while((run = readdir(d)) != NULL) if(strstr(run->d_name, ".pgm") != NULL) counter++;						//if(dir->d_name ==  '.') continue;
 
 
 	closedir(d);
@@ -34,12 +34,12 @@ void readPGMImage(pgm *pio, char *filename){
 	FILE *fp;
 	char ch;
 
-	if (!(fp = fopen(filename,"r"))){
+	if (!(fp = fopen(filename, "rb"))){
 		perror("Erro.");
 		exit(1);
 	}
 
-	if ( (ch = getc(fp))!='P'){
+	if ((ch = getc(fp))!='P'){
 		puts("A imagem fornecida não está no formato pgm");
 		exit(2);
 	}

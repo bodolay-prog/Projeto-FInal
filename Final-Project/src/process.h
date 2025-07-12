@@ -1,6 +1,6 @@
 #ifndef DOHISTOGRAM_H
 #define DOHISTOGRAM_H
 
-void doLBPHistogram();
+void mainProcess();
 
 #endif

@@ -1,7 +1,8 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-typedef struct  {
+typedef struct{
+	
 	int tipo;
 	int c;
 	int r;

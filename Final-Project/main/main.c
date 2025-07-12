@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <../src/image.h>
-#include "../src/doHistogram.h"
+#include "../src/process.h"
 
 int main(){
 	
@@ -13,7 +13,7 @@ int main(){
 	
 	begin = clock();
 		
-		doLBPHistogram();													//Computação principal
+		mainProcess();																				//Computação principal
 
 	end = clock();
 

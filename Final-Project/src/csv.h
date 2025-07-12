@@ -3,6 +3,6 @@
 
 #include "image.h"
 
-void generateCSV(pgm *, const char *, unsigned char *);
+void generateCSV(pgm *, const char *, unsigned char *, FILE *);
 
 #endif

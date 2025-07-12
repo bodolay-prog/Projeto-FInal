@@ -1,8 +1,8 @@
 all: ./bin/main.e
 	./bin/main.e
 
-./bin/main.e: ./build/image.o ./build/ops.o ./build/memory.o ./build/csv.o ./build/main.o ./build/doHistogram.o
-	gcc -march=native -Wall -Isrc -Imain -o ./bin/main.e ./build/image.o ./build/ops.o ./build/memory.o ./build/csv.o ./build/main.o ./build/doHistogram.o
+./bin/main.e: ./build/image.o ./build/ops.o ./build/memory.o ./build/csv.o ./build/main.o ./build/process.o
+	gcc -march=native -Wall -Isrc -Imain -o ./bin/main.e ./build/image.o ./build/ops.o ./build/memory.o ./build/csv.o ./build/main.o ./build/process.o
 
 ./build/image.o: ./src/image.c
 	gcc -Wall -Isrc -Imain -o ./build/image.o -c ./src/image.c
@@ -19,8 +19,8 @@ all: ./bin/main.e
 ./build/main.o: ./main/main.c
 	gcc -Wall -Isrc -Imain -o ./build/main.o -c ./main/main.c
 
-./build/doHistogram.o: ./src/doHistogram.c
-	gcc -Wall -Isrc -Imain -o ./build/doHistogram.o -c ./src/doHistogram.c
+./build/process.o: ./src/process.c
+	gcc -Wall -Isrc -Imain -o ./build/process.o -c ./src/process.c
 
 clean:
 	rm -f ./build/*.o ./bin/main.e
