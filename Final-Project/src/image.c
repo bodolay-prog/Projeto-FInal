@@ -1,6 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <dirent.h>
+
 #include "image.h"
+
+int countImages(const char *directory){
+
+	//opening 'input/'
+	DIR *d;
+
+	d = opendir(directory);
+	if(!d){
+
+		perror("countImages() says: Cannot count the quantity of images in 'input'\n");
+		exit(1);
+	}
+
+
+	//running the directory
+	struct dirent *run;
+	int counter = 0;
+
+	while((run = readdir(d)) != NULL) if(strstr(run->d_name, ".pgm") != NULL) counter++;									//if(dir->d_name ==  '.') continue;
+
+
+	closedir(d);
+	return counter;
+}
 
 void readPGMImage(pgm *pio, char *filename){
 
@@ -19,7 +46,7 @@ void readPGMImage(pgm *pio, char *filename){
 	
 	pio->tipo = getc(fp)-48;
 	
-	fseek(fp,1, SEEK_CUR);
+	fseek(fp, 1, SEEK_CUR);
 
 	while((ch=getc(fp))=='#'){
 		while( (ch=getc(fp))!='\n');
@@ -43,10 +70,11 @@ void readPGMImage(pgm *pio, char *filename){
 			for (int k=0; k < (pio->r * pio->c); k++){
 				fscanf(fp, "%hhu", pio->pData+k);
 			}
-		break;	
+		break;
+		
 		case 5:
 			puts("Lendo imagem PGM (dados em binário)");
-			fread(pio->pData,sizeof(unsigned char),pio->r * pio->c, fp);
+			fread(pio->pData,sizeof(unsigned char), pio->r * pio->c, fp);
 		break;
 		default:
 			puts("Não está implementado");
@@ -61,7 +89,7 @@ void writePGMImage(pgm *pio, char *filename){
 
 
 	if (!(fp = fopen(filename,"wb"))){
-		perror("Erro.");
+		perror("writePGMImage() says: Erro\n");
 		exit(1);
 	}
 

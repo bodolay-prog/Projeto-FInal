@@ -1,7 +1,4 @@
 build/*.o
 bin/*.e
 
-
-output/*.pgm
-
 .vscode/

@@ -9,6 +9,8 @@ typedef struct  {
 	unsigned char *pData;
 } pgm;
 
+//readPGMImage(lbp, filepath);
+int countImages(const char *);
 void readPGMImage(pgm *,char *);
 void writePGMImage(pgm *, char *);
 

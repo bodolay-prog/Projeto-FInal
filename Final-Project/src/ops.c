@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+
 #include "image.h"
 
 
@@ -15,7 +16,7 @@ unsigned char * doLBPImage(pgm *p){
 		unsigned r = i / p->r;
         unsigned c = i % p->c;
 
-        #define RAN(r, c) (((r) >= 0 && (r) < p->r && (c) >= 0 && (c) < p->c)    ?    *(p->pData + (r) * p->c + (c))    :    0)                 //avoiding out of bounds write
+        #define RAN(r, c) (((r) >= 0 && (r) < p->r && (c) >= 0 && (c) < p->c)    ?    *(p->pData + (r) * p->c + (c))    :    0)            //avoiding out of bounds write
         unsigned char binary = 0;
 
         //filling LBP[i]
@@ -36,11 +37,12 @@ unsigned char * doLBPImage(pgm *p){
 
 void doHistogram(pgm *lbp,char *filename,unsigned char *histogramvector){
 
-    for(int i = 0 ; i<lbp->c * lbp->r; i++) (*(histogramvector + *(lbp->pData + i))) ++;
+    //filling the histogram
+    for(int i = 0; i < (lbp->c * lbp->r); i++) (*(histogramvector + *(lbp->pData + i)))++;
 
-    if(filename[0] =='0') histogramvector[256] = 0;
-
-    if(filename[0] =='1') histogramvector[256] = 1;
+    //getting the class
+    if(*filename =='0') *(histogramvector + 256) = 0;
+    if(*filename =='1') *(histogramvector + 256) = 1;
 
 
 }

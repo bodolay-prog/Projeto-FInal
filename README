@@ -1,7 +1,5 @@
 EXECUÇÃO:
 
--> Posicionar todos os arquivos na pasta de inputs, em Final-Project/input/
+-> Posicionar todos os arquivos .pgm na pasta de inputs, em Final-Project/input/
 -> Ir para a pasta de Final-Project, com: cd Final-Project
--> Rodar:
-    make
-    ./bin/main.e
+-> Rodar: make

@@ -1,7 +1,8 @@
 all: ./bin/main.e
+	./bin/main.e
 
-./bin/main.e: ./build/image.o ./build/ops.o ./build/memory.o ./build/file.o ./build/main.o ./build/doLBPHistogram.o
-	gcc -Wall -Isrc -Imain -o ./bin/main.e ./build/image.o ./build/ops.o ./build/memory.o ./build/file.o ./build/main.o ./build/doLBPHistogram.o
+./bin/main.e: ./build/image.o ./build/ops.o ./build/memory.o ./build/csv.o ./build/main.o ./build/doHistogram.o
+	gcc -march=native -Wall -Isrc -Imain -o ./bin/main.e ./build/image.o ./build/ops.o ./build/memory.o ./build/csv.o ./build/main.o ./build/doHistogram.o
 
 ./build/image.o: ./src/image.c
 	gcc -Wall -Isrc -Imain -o ./build/image.o -c ./src/image.c
@@ -12,14 +13,14 @@ all: ./bin/main.e
 ./build/memory.o: ./src/memory.c
 	gcc -Wall -Isrc -Imain -o ./build/memory.o -c ./src/memory.c
 
-./build/file.o: ./src/file.c
-	gcc -Wall -Isrc -Imain -o ./build/file.o -c ./src/file.c
+./build/csv.o: ./src/csv.c
+	gcc -Wall -Isrc -Imain -o ./build/csv.o -c ./src/csv.c
 
 ./build/main.o: ./main/main.c
 	gcc -Wall -Isrc -Imain -o ./build/main.o -c ./main/main.c
 
-./build/doLBPHistogram.o: ./src/doLBPHistogram.c
-	gcc -Wall -Isrc -Imain -o ./build/doLBPHistogram.o -c ./src/doLBPHistogram.c
+./build/doHistogram.o: ./src/doHistogram.c
+	gcc -Wall -Isrc -Imain -o ./build/doHistogram.o -c ./src/doHistogram.c
 
 clean:
 	rm -f ./build/*.o ./bin/main.e

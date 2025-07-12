@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+
 #include "../src/image.h"
 #include "../src/ops.h"
 #include "../src/memory.h"
-#include "../src/file.h"
+#include "../src/csv.h"
 
 /*
-
 
 struct dirent {
     ino_t d_ino;                // Número do inode do arquivo (geralmente não utilizado diretamente)
@@ -22,6 +22,7 @@ struct dirent {
 */
 
 void doLBPHistogram(){
+
     pgm *lbp;
     DIR *d;
     char filepath[512];
@@ -34,21 +35,23 @@ void doLBPHistogram(){
             
             
                 allocMemStruct(&lbp, 1);                                                                                // Aloca a memória para a imagem
-                printf("Alocado\n");
 
                 //Cria o caminho completo para o arquivo de imagem e a abstrai
                 snprintf(filepath, sizeof(filepath), "input/%s", dir->d_name);
-                readPGMImage(lbp, filepath);  // Lê a imagem
+                readPGMImage(lbp, filepath);                                                                            // Lê e abstrai imagem
 
                 //Processa LBP e histograma
+                printf("Computando: %s\n",dir->d_name);
                 lbp->pData = doLBPImage(lbp);
 
                 unsigned char *histogram = NULL;
-                allocMemVector(&histogram, (lbp->mv + 2));      
-                printf("%s\n",dir->d_name);                             
+                allocMemVector(&histogram, (lbp->mv + 2));
                 doHistogram(lbp, dir->d_name, histogram);
-                printf("The type of the archive is %d\n",*(histogram + lbp->mv + 1));
-                
+
+                //Salva o histograma atual em um .csv
+                generateCSV(lbp, filepath, histogram);
+
+                printf("Classe desse arquivo: %d\n\n", *(histogram + lbp->mv + 1));
 
                 //Salva a imagem processada
                 snprintf(filepath, sizeof(filepath), "output/%s", dir->d_name);
@@ -65,17 +68,11 @@ void doLBPHistogram(){
                 
                 Overview:
                 - função de histograma ainda não feita (o mais mamão, já já eu faço pera)
-                - função de gerar CSV declarada em file.c e file.h mas incompleta.
-                
+                - função de gerar CSV declarada em csv.c e csv.h mas incompleta.
 
                 */
-
-
-
-                // Medição de tempo
         }
         closedir(d);  // Fecha o diretório
 
     } else perror("Erro ao abrir o diretório");
-
 }
