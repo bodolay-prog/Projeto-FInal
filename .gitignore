@@ -1,12 +1,7 @@
-build/
-bin/
+build/*.o
+bin/*.e
 
 
-output/
-
-
-*.o
-*.e
-
+output/*.pgm
 
 .vscode/

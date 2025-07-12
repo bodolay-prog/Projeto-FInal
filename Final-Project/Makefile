@@ -1,56 +1,28 @@
-#makefile temporário e exageradamente complexo só pra compilar rapido e saber oq ta zuado
+all: ./bin/main.e
 
-# Diretórios
-SRC_DIR = src
-TIME_DIR = time
-MAIN_DIR = main
-BUILD_DIR = build
-BIN_DIR = bin
+./bin/main.e: ./build/image.o ./build/ops.o ./build/memory.o ./build/file.o ./build/main.o ./build/doLBPHistogram.o
+	gcc -Wall -Isrc -Imain -o ./bin/main.e ./build/image.o ./build/ops.o ./build/memory.o ./build/file.o ./build/main.o ./build/doLBPHistogram.o
 
-# Compiler e flags
-CC = gcc
-CFLAGS = -Wall -I$(SRC_DIR) -I$(TIME_DIR)
+./build/image.o: ./src/image.c
+	gcc -Wall -Isrc -Imain -o ./build/image.o -c ./src/image.c
 
-# Criação de diretórios (garante que existam)
-$(shell mkdir -p $(BUILD_DIR) $(BIN_DIR))
+./build/ops.o: ./src/ops.c
+	gcc -Wall -Isrc -Imain -o ./build/ops.o -c ./src/ops.c
 
-# Arquivos fonte
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-TIME_FILES = $(wildcard $(TIME_DIR)/*.c)
-MAIN_FILES = $(wildcard $(MAIN_DIR)/*.c)
+./build/memory.o: ./src/memory.c
+	gcc -Wall -Isrc -Imain -o ./build/memory.o -c ./src/memory.c
 
-# Objetos
-SRC_OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_FILES))
-TIME_OBJS = $(patsubst $(TIME_DIR)/%.c,$(BUILD_DIR)/%.o,$(TIME_FILES))
-MAIN_OBJS = $(patsubst $(MAIN_DIR)/%.c,$(BUILD_DIR)/%.o,$(MAIN_FILES))
+./build/file.o: ./src/file.c
+	gcc -Wall -Isrc -Imain -o ./build/file.o -c ./src/file.c
 
-OBJS = $(SRC_OBJS) $(TIME_OBJS) $(MAIN_OBJS)
+./build/main.o: ./main/main.c
+	gcc -Wall -Isrc -Imain -o ./build/main.o -c ./main/main.c
 
-# Binário final
-TARGET = $(BIN_DIR)/main.e
+./build/doLBPHistogram.o: ./src/doLBPHistogram.c
+	gcc -Wall -Isrc -Imain -o ./build/doLBPHistogram.o -c ./src/doLBPHistogram.c
 
-# Regra principal
-all: $(TARGET)
-
-# Gera o binário
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
-
-# Compilar objetos
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(TIME_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(MAIN_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Limpeza
 clean:
-	rm -rf $(BUILD_DIR) $(BIN_DIR)
+	rm -f ./build/*.o ./bin/main.e
 
 cleanimages:
-	rm -f output/*.pgm output/*.p
-
-.PHONY: all clean cleanimages
+	rm -f ./output/*.pgm ./output/*.p

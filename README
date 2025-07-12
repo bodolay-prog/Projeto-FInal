@@ -3,5 +3,5 @@ EXECUÇÃO:
 -> Posicionar todos os arquivos na pasta de inputs, em Final-Project/input/
 -> Ir para a pasta de Final-Project, com: cd Final-Project
 -> Rodar:
-    make clean && make
+    make
     ./bin/main.e
