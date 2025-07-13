@@ -13,7 +13,7 @@ unsigned char * doLBPImage(pgm *p){
 
     for(int i = 0; i < p->r * p->c; i++){
 
-		unsigned r = i / p->r;
+		unsigned r = i / p->c;
         unsigned c = i % p->c;
 
         #define RAN(r, c) (((r) >= 0 && (r) < p->r && (c) >= 0 && (c) < p->c)    ?    *(p->pData + (r) * p->c + (c))    :    0)            //avoiding out of bounds write
@@ -36,6 +36,9 @@ unsigned char * doLBPImage(pgm *p){
 }
 
 void doHistogram(pgm *lbp,char *filename,unsigned char *histogramvector){
+
+    //making sure that dont have trash
+    for(int i = 0; i<257; i++) *(histogramvector + i) = 0;
 
     //filling the histogram
     for(int i = 0; i < (lbp->c * lbp->r); i++) (*(histogramvector + *(lbp->pData + i)))++;

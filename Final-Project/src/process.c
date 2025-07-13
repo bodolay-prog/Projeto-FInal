@@ -18,7 +18,7 @@ void mainProcess(){
 
     //Ponteiro de alocação do vetor do histograma
     unsigned char *histogram = NULL;
-    allocMemVector(&histogram, 258);                        //lbp->(mv + 2), valor máximo + classe + segurança
+    allocMemVector(&histogram, 257);                        //lbp->(mv + 2), valor máximo + classe + segurança
 
     //Ponteiro de abertura do arquivo .csv (generateCSV)
     FILE *csvPointer = fopen("output/out.csv", "w");
@@ -29,7 +29,7 @@ void mainProcess(){
     }
 
     DIR *d;
-    d = opendir("input");
+    d = opendir("imageset-exs");
     if(d){
         while ((dir = readdir(d)) != NULL){
             if (dir->d_name[0] == '.') continue;                                                                    //Ignora . e ..
@@ -37,7 +37,7 @@ void mainProcess(){
             allocMemStruct(&lbp, 1);                                                                                //Aloca a memória para a imagem
 
             //Cria o caminho completo para o arquivo de imagem e a abstrai
-            snprintf(filepath, sizeof(filepath), "input/%s", dir->d_name);
+            snprintf(filepath, sizeof(filepath), "imageset-exs/%s", dir->d_name);
             readPGMImage(lbp, filepath);                                                                            //Lê e abstrai imagem
 
             //Processa LBP
@@ -52,12 +52,8 @@ void mainProcess(){
 
             printf("Classe desse arquivo: %d\n\n", *(histogram + lbp->mv + 1));
 
-            //Salva a imagem processada
-            snprintf(filepath, sizeof(filepath), "output/%s", dir->d_name);
-            writePGMImage(lbp, filepath);
-
-
             free(lbp->pData);
+            free(lbp);
         }
 
         closedir(d);  // Fecha o diretório
@@ -66,7 +62,6 @@ void mainProcess(){
 
     //Liberação de memória
     fclose(csvPointer);
-    free(lbp);
     free(histogram);
 }
 

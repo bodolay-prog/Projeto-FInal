@@ -3,6 +3,5 @@
 
 void allocMemVector(unsigned char**, int);
 void allocMemStruct(pgm**, int);
-void allocMemPdata(pgm**);
 
 #endif

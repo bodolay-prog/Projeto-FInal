@@ -8,7 +8,7 @@ int main(){
 	clock_t begin, end;
 	double time_per_img, time_total = 0;
 
-	int qtdIm = countImages("input");
+	int qtdIm = countImages("imageset-exs");
 	puts("\n----------------- Iniciando processamento ---------------------------\n");
 	
 	begin = clock();

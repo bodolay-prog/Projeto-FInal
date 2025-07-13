@@ -28,14 +28,3 @@ void allocMemVector(unsigned char **v, int qtd){
     }
 }
 
-void allocMemPdata(pgm **lbp){
-
-        (*lbp)->pData = (unsigned char*)calloc(((*lbp)->r * (*lbp)->c ),sizeof(unsigned char));
-        if(!((*lbp)->pData)){
-
-            puts("\n allocMemPdata() says: Error at memory allocation\n");
-            exit(2);
-
-        }    
-
-}
