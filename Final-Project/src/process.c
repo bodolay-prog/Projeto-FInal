@@ -12,13 +12,13 @@
 void mainProcess(){
 
     pgm *lbp;
-    char filepath[512];
+    char filepath[512];                                                                                             //tamanho para diretório + arquivo 
     struct dirent *dir;
 
 
     //Ponteiro de alocação do vetor do histograma
     unsigned char *histogram = NULL;
-    allocMemVector(&histogram, 257);                        //lbp->(mv + 2), valor máximo + classe + segurança
+    allocMemVector(&histogram, 257);                                                                                //valor máximo + classe
 
     //Ponteiro de abertura do arquivo .csv (generateCSV)
     FILE *csvPointer = fopen("output/out.csv", "w");
@@ -56,7 +56,7 @@ void mainProcess(){
             free(lbp);
         }
 
-        closedir(d);  // Fecha o diretório
+        closedir(d);
 
     } else perror("Erro ao abrir o diretório");
 

@@ -5,8 +5,16 @@
 
 #include "image.h"
 
+/*
+Coordenadas para RAN(r, c)
 
-unsigned char * doLBPImage(pgm *p){
+    [r - 1, c - 1] [r - 1, c]  [r - 1, c + 1]
+      [r, c - 1]      [i]        [r, c + 1]
+    [r + 1, c - 1] [r + 1, c]  [r + 1, c + 1]
+
+*/
+
+unsigned char* doLBPImage(pgm *p){
 
     unsigned char *LBP = (unsigned char *)malloc(p->r * p->c * sizeof(unsigned char));
     if(!LBP) return NULL;
@@ -23,7 +31,7 @@ unsigned char * doLBPImage(pgm *p){
         binary |= (RAN(r - 1, c - 1)     >= *(p->pData + i)) << 7;
         binary |= (RAN(r - 1, c)         >= *(p->pData + i)) << 6;
         binary |= (RAN(r - 1, c + 1)     >= *(p->pData + i)) << 5;
-        binary |= (RAN(r,     c + 1)     >= *(p->pData+ i)) << 4;
+        binary |= (RAN(r,     c + 1)     >= *(p->pData + i)) << 4;
         binary |= (RAN(r + 1, c + 1)     >= *(p->pData + i)) << 3;
         binary |= (RAN(r + 1, c)         >= *(p->pData + i)) << 2;
         binary |= (RAN(r + 1, c - 1)     >= *(p->pData + i)) << 1;
@@ -38,7 +46,7 @@ unsigned char * doLBPImage(pgm *p){
 void doHistogram(pgm *lbp,char *filename,unsigned char *histogramvector){
 
     //making sure that dont have trash
-    for(int i = 0; i<257; i++) *(histogramvector + i) = 0;
+    for(int i = 0; i < 257; i++) *(histogramvector + i) = 0;
 
     //filling the histogram
     for(int i = 0; i < (lbp->c * lbp->r); i++) (*(histogramvector + *(lbp->pData + i)))++;

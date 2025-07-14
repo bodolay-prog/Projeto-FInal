@@ -82,25 +82,3 @@ void readPGMImage(pgm *pio, char *filename){
 	
 	fclose(fp);
 }
-
-void writePGMImage(pgm *pio, char *filename){
-	FILE *fp;
-	//char ch;
-
-
-	if (!(fp = fopen(filename,"wb"))){
-		perror("writePGMImage() says: Erro\n");
-		exit(1);
-	}
-
-
-	fprintf(fp, "%s\n","P5");
-	fprintf(fp, "%d %d\n",pio->c, pio->r);
-	fprintf(fp, "%d\n", 255);
-
-
-	fwrite(pio->pData, sizeof(unsigned char), pio->c * pio->r, fp);
-
-
-	fclose(fp);
-}
